@@ -36,6 +36,7 @@ services:
       - MYSQL_DATABASE=zabbix
       - DB_SERVER_HOST=zabbix-db
       - ZBX_SERVER_HOST=zabbix-server
+      - TZ=America/Sao_Paulo
     restart: unless-stopped
     links:
       - zabbix-db:zabbix-db
