@@ -51,8 +51,6 @@ services:
       - ZBX_SERVER_HOST=zabbix-server
     restart: unless-stopped
     privileged: true
-    links:
-      - zabbix-server:zabbix-server
 
 volumes:
   zabbix-db-storage:
