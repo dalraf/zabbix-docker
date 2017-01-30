@@ -10,7 +10,7 @@ services:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=zabbix
   zabbix-server:
-    image: zabbix/zabbix-server-mysql:latest
+    image: zabbix/zabbix-web-nginx-mysql:latest
     ports:
       - 80:80
       - 10051:10051
