@@ -8,7 +8,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - MYSQL_ROOT_PASSWORD=123456
-#      - MYSQL_DATABASE=glpi
+      - MYSQL_DATABASE=zabbix
   zabbix-server:
     image: zabbix/zabbix-server-mysql:latest
     ports:
@@ -21,7 +21,7 @@ services:
       - MYSQL_USER="root"
       - DB_SERVER_HOST="zabbix-db"
     links:
-      - zabbix-db:zabbix.db
+      - zabbix-db:zabbix-db
 volumes:
   zabbix-db-storage:
     driver: local
