@@ -9,6 +9,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=123456
       - MYSQL_DATABASE=zabbix
+    restart: unless-stopped
   zabbix-server:
     image: zabbix/zabbix-server-mysql:latest
     ports:
@@ -20,6 +21,7 @@ services:
       - MYSQL_USER=root
       - MYSQL_DATABASE=zabbix
       - DB_SERVER_HOST=zabbix-db
+    restart: unless-stopped
     links:
       - zabbix-db:zabbix-db
   zabbix-web:
@@ -34,6 +36,7 @@ services:
       - MYSQL_DATABASE=zabbix
       - DB_SERVER_HOST=zabbix-db
       - ZBX_SERVER_HOST=zabbix-server
+    restart: unless-stopped
     links:
       - zabbix-db:zabbix-db
       - zabbix-server:zabbix-server
