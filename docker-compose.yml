@@ -24,6 +24,7 @@ services:
     restart: unless-stopped
     links:
       - zabbix-db:zabbix-db
+      - zabbix-agent:zabbix-agent
   zabbix-web:
     image: zabbix/zabbix-web-nginx-mysql:latest
     ports:
@@ -41,6 +42,18 @@ services:
     links:
       - zabbix-db:zabbix-db
       - zabbix-server:zabbix-server
+  zabbix-agent:
+    image: zabbix/zabbix-agent:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - ZBX_HOSTNAME=zabbix-server
+      - ZBX_SERVER_HOST=zabbix-server
+    restart: unless-stopped
+    privileged: true
+    links:
+      - zabbix-server:zabbix-server
+
 volumes:
   zabbix-db-storage:
     driver: local
